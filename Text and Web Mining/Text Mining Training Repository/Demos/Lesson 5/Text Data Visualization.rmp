@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="254" resized="true" width="687" x="29" y="228">Demo 5 - Text Data Visualization&lt;br&gt;&lt;br&gt;1. Load the Hotel Review Wordlist from Lesson 4.&lt;br&gt;2. Add Wordlist to Data and review the word list results.&lt;br&gt;3. Add a Sort operator and sort by &amp;quot;total&amp;quot;.&lt;br&gt;4. Add Filter Examples and using a custom filter select only the examples where&amp;quot; total&amp;quot; &amp;gt;20.&lt;br&gt;5. Create a horizontal bar chart of the most frequent terms.&lt;br&gt;6. Retrieve the Hotel Review Word Vector from Lesson 4.&lt;br&gt;7. Add the MR-Weighting operator from the Feature Selection extension with parameter sort=descending.&lt;br&gt;8. Add Weights to Data operator to convert the weights to an exampleset.&lt;br&gt;9. Add another Filter Examples operator and using a custom filter select only the weights &amp;gt;0.15 or &amp;lt;-0.15.&lt;br&gt;10. Create another horizontal bar graph showing the terms with the highest weights.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

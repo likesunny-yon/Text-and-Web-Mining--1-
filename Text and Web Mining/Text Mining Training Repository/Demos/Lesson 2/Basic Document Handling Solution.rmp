@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="8.2.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="8.2.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="text:create_document" compatibility="8.1.000" expanded="true" height="68" name="Create Document" width="90" x="112" y="34">
+        <parameter key="text" value="The food is good, the service great.&#10;Very good selection of food for breakfast buffet.&#10;"/>
+        <parameter key="add label" value="false"/>
+        <parameter key="label_type" value="nominal"/>
+      </operator>
+      <operator activated="true" class="text:read_document" compatibility="8.1.000" expanded="true" height="68" name="Read Document" width="90" x="112" y="136">
+        <parameter key="file" value="C:\Users\Levent\Desktop\Desktop 27112017\rapidminer\Rapidminer course\Text mining\Text Mining Training Data\Room Service Reviews\food_swissotel_chicago.1.gold.txt"/>
+        <parameter key="extract_text_only" value="true"/>
+        <parameter key="use_file_extension_as_type" value="true"/>
+        <parameter key="content_type" value="txt"/>
+        <parameter key="encoding" value="SYSTEM"/>
+      </operator>
+      <operator activated="true" class="text:read_document" compatibility="8.1.000" expanded="true" height="68" name="Read Document (2)" width="90" x="112" y="238">
+        <parameter key="file" value="C:\Users\Levent\Desktop\Desktop 27112017\rapidminer\Rapidminer course\Text mining\Text Mining Training Data\Room Service Reviews\food_swissotel_chicago.2.gold.txt"/>
+        <parameter key="extract_text_only" value="true"/>
+        <parameter key="use_file_extension_as_type" value="true"/>
+        <parameter key="content_type" value="txt"/>
+        <parameter key="encoding" value="SYSTEM"/>
+      </operator>
+      <operator activated="true" class="collect" compatibility="8.2.000" expanded="true" height="103" name="Collect" width="90" x="246" y="34">
+        <parameter key="unfold" value="false"/>
+      </operator>
+      <operator activated="true" class="text:documents_to_data" compatibility="8.1.000" expanded="true" height="82" name="Documents to Data" width="90" x="313" y="187">
+        <parameter key="text_attribute" value="text"/>
+        <parameter key="label_attribute" value="label"/>
+        <parameter key="add_meta_information" value="true"/>
+        <parameter key="datamanagement" value="double_sparse_array"/>
+        <parameter key="data_management" value="auto"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="8.2.000" expanded="true" height="68" name="Retrieve Hotel Review Data" width="90" x="112" y="340">
+        <parameter key="repository_entry" value="../../Data/Hotel Review Data"/>
+      </operator>
+      <operator activated="true" class="nominal_to_text" compatibility="8.2.000" expanded="true" height="82" name="Nominal to Text" width="90" x="313" y="340">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="text:data_to_documents" compatibility="8.1.000" expanded="true" height="68" name="Data to Documents" width="90" x="514" y="340">
+        <parameter key="select_attributes_and_weights" value="false"/>
+        <list key="specify_weights"/>
+      </operator>
+      <connect from_op="Create Document" from_port="output" to_op="Collect" to_port="input 1"/>
+      <connect from_op="Read Document" from_port="output" to_op="Collect" to_port="input 2"/>
+      <connect from_op="Read Document (2)" from_port="output" to_op="Documents to Data" to_port="documents 1"/>
+      <connect from_op="Collect" from_port="collection" to_port="result 1"/>
+      <connect from_op="Documents to Data" from_port="example set" to_port="result 2"/>
+      <connect from_op="Retrieve Hotel Review Data" from_port="output" to_op="Nominal to Text" to_port="example set input"/>
+      <connect from_op="Nominal to Text" from_port="example set output" to_op="Data to Documents" to_port="example set"/>
+      <connect from_op="Data to Documents" from_port="documents" to_port="result 3"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="192" resized="true" width="688" x="71" y="438">Demo 2 - Basic Document Handling&lt;br&gt;&lt;br&gt;1. Use &amp;quot;Create Document&amp;quot; operator to create a document using any text entered in the editor.&lt;br&gt;2. Use &amp;quot;Read Document&amp;quot; to read a text file in as a document (sample text files available in the &amp;quot;Data&amp;quot; folder).&lt;br&gt;3. Create a document collection from these 2 documents using the &amp;quot;Collect&amp;quot; operator.&lt;br&gt;4. Read another text document and convert it to a dataset using &amp;quot;Documents to Data.&amp;quot;&lt;br&gt;5. Retrieve the Hotel Review Data dataset from the Data directory in the repository and then convert it to documents using the &amp;quot;Data to Documents&amp;quot; operator. Don't forget to assign weights or convert data types first!</description>
+    </process>
+  </operator>
+</process>

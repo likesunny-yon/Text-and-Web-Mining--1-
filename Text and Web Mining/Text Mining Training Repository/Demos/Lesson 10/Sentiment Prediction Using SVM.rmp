@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.7.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="21"/>
+      <description align="left" color="yellow" colored="false" height="354" resized="true" width="767" x="36" y="117">Demo 10 - Rating Classification Using SVM&lt;br&gt;&lt;br&gt;1. Load the movie reviews stored from Lesson 9.&lt;br&gt;2. Add the Filter Examples operator to select records where &amp;quot;rating&amp;quot; is not missing, and use Generate Copy to create &amp;quot;rating_positive&amp;quot; from &amp;quot;rating&amp;quot;.&lt;br&gt;3. Use Numerical to Binominal to turn rating_positive from a numeric attribute into a binominal attribute (suitable for classification), with the logic min 0 and max 6.&lt;br&gt;4. Add Set Role operator and define the new rating_positive as the label and then drop &amp;quot;rating&amp;quot; from the modeling dataset.&lt;br&gt;5. Add the Process Documents from Data operator.&lt;br&gt;6. Inside Process Documents, use the tokenize, transform cases, filter English stopwords, filter token length, and Porter stemming operators for text processing.&lt;br&gt;7. In the Process Documents parameters, choose the TF-IDF word vector and percentual pruning at 5/50 thresholds.&lt;br&gt;8. Add Optimize Parameters Grid operator.&lt;br&gt;9. Add the Cross-Validation operator as a sub-process, and configure it as usual with the SVM learner.&lt;br&gt;10. Add the Log operator outside the Cross Validation and inside the Optimize Parameters.&lt;br&gt;11. Configure the Log to record the C parameter (1e-3 to 1e3 in 6 logarithmic steps), and the kernel type (try dot, radial, and polynomial), and the performance value.&lt;br&gt;12. Run the model and review the results.</description>
+    </process>
+  </operator>
+</process>

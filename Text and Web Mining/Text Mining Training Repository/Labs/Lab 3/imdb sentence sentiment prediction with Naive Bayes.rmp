@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="176" resized="true" width="658" x="34" y="303">Lab 3 - imdb sentences sentiment prediction with SVM&lt;br&gt;&lt;br&gt;1. Include the process from the second lab and execute it.&lt;br&gt;2. Take the resulting word vector and connect it to the Cross Validation operator.&lt;br&gt;3. Configure the Cross Validation operator as usual using the standard SVM learner.&lt;br&gt;4. Put that operator inside an Optimize Grid operator and configure it to test values of c from 0.001 to 1000.&lt;br&gt;Use logarithmic steps and log the resulting performance.&lt;br&gt;5. Review the resulting model.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

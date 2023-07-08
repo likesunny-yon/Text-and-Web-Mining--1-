@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="192" resized="false" width="688" x="30" y="302">Demo 2 - Basic Document Handling&lt;br&gt;&lt;br&gt;1. Use &amp;quot;Create Document&amp;quot; operator to create a document using any text entered in the editor.&lt;br&gt;2. Use &amp;quot;Read Document&amp;quot; to read a text file in as a document (sample text files available in the &amp;quot;Data&amp;quot; folder).&lt;br&gt;3. Create a document collection from these 2 documents using the &amp;quot;Collect&amp;quot; operator.&lt;br&gt;4. Read another text document and convert it to a dataset using &amp;quot;Documents to Data.&amp;quot;&lt;br&gt;5. Retrieve the Hotel Review Data dataset from the Data directory in the repository and then convert it to documents using the &amp;quot;Data to Documents&amp;quot; operator. Don't forget to assign weights or convert data types first!</description>
+    </process>
+  </operator>
+</process>

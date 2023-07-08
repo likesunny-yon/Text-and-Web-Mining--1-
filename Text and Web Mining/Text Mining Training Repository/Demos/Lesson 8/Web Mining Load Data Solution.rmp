@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="web:get_webpage" compatibility="9.7.000" expanded="true" height="68" name="Get Page" width="90" x="45" y="34">
+        <parameter key="url" value="https://www.metacritic.com/tv/game-of-thrones/season-8/user-reviews?page=0"/>
+        <parameter key="random_user_agent" value="false"/>
+        <parameter key="connection_timeout" value="10000"/>
+        <parameter key="read_timeout" value="10000"/>
+        <parameter key="follow_redirects" value="true"/>
+        <parameter key="accept_cookies" value="none"/>
+        <parameter key="cookie_scope" value="global"/>
+        <parameter key="request_method" value="GET"/>
+        <list key="query_parameters"/>
+        <list key="request_properties"/>
+        <parameter key="override_encoding" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
+        <parameter key="keep_sensitive_headers" value="false"/>
+      </operator>
+      <operator activated="false" class="read_csv" compatibility="8.1.000" expanded="true" height="68" name="Read CSV" width="90" x="45" y="136">
+        <parameter key="csv_file" value="C:\Users\Levent\Desktop\Desktop 27112017\rapidminer\Rapidminer course\Text mining\Text Mining Training Data\review links game of thrones.txt"/>
+        <parameter key="column_separators" value=";"/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="false"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="false"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="first_row_as_names" value="false"/>
+        <list key="annotations">
+          <parameter key="0" value="Name"/>
+        </list>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="windows-1252"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="Link.true.polynominal.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+      </operator>
+      <operator activated="false" class="web:retrieve_webpages" compatibility="9.7.000" expanded="true" height="68" name="Get Pages" width="90" x="313" y="136">
+        <parameter key="link_attribute" value="Link"/>
+        <parameter key="page_attribute" value="page"/>
+        <parameter key="random_user_agent" value="false"/>
+        <parameter key="connection_timeout" value="10000"/>
+        <parameter key="read_timeout" value="10000"/>
+        <parameter key="follow_redirects" value="true"/>
+        <parameter key="accept_cookies" value="none"/>
+        <parameter key="cookie_scope" value="global"/>
+        <parameter key="request_method" value="GET"/>
+        <parameter key="delay" value="none"/>
+        <parameter key="delay_amount" value="1000"/>
+        <parameter key="min_delay_amount" value="10"/>
+        <parameter key="max_delay_amount" value="1000"/>
+      </operator>
+      <operator activated="false" class="web:crawl_web_modern" compatibility="9.7.000" expanded="true" height="68" name="Crawl Web" width="90" x="45" y="238">
+        <parameter key="url" value="https://www.metacritic.com/tv/game-of-thrones/season-8"/>
+        <list key="crawling_rules">
+          <parameter key="follow_link_with_matching_url" value=".*/user-reviews\?page=.*"/>
+        </list>
+        <parameter key="max_crawl_depth" value="1"/>
+        <parameter key="retrieve_as_html" value="false"/>
+        <parameter key="enable_basic_auth" value="false"/>
+        <parameter key="add_content_as_attribute" value="true"/>
+        <parameter key="write_pages_to_disk" value="false"/>
+        <parameter key="include_binary_content" value="false"/>
+        <parameter key="output_dir" value="C:/Users/LEVENT/Downloads/Text mining 2020"/>
+        <parameter key="output_file_extension" value="txt"/>
+        <parameter key="max_page_size" value="1000"/>
+        <parameter key="delay" value="200"/>
+        <parameter key="max_concurrent_connections" value="100"/>
+        <parameter key="max_connections_per_host" value="50"/>
+        <parameter key="user_agent" value="as"/>
+        <parameter key="ignore_robot_exclusion" value="true"/>
+      </operator>
+      <operator activated="true" class="concurrency:loop" compatibility="9.10.001" expanded="true" height="82" name="Loop" width="90" x="45" y="340">
+        <parameter key="number_of_iterations" value="4"/>
+        <parameter key="iteration_macro" value="iteration"/>
+        <parameter key="reuse_results" value="false"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="web:get_webpage" compatibility="9.7.000" expanded="true" height="68" name="Get Page (2)" width="90" x="112" y="34">
+            <parameter key="url" value="https://www.metacritic.com/tv/game-of-thrones/season-8/user-reviews?page=%{iteration}"/>
+            <parameter key="random_user_agent" value="false"/>
+            <parameter key="connection_timeout" value="10000"/>
+            <parameter key="read_timeout" value="10000"/>
+            <parameter key="follow_redirects" value="true"/>
+            <parameter key="accept_cookies" value="none"/>
+            <parameter key="cookie_scope" value="global"/>
+            <parameter key="request_method" value="GET"/>
+            <list key="query_parameters"/>
+            <list key="request_properties"/>
+            <parameter key="override_encoding" value="false"/>
+            <parameter key="encoding" value="SYSTEM"/>
+            <parameter key="keep_sensitive_headers" value="false"/>
+          </operator>
+          <connect from_op="Get Page (2)" from_port="output" to_port="output 1"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="sink_output 1" spacing="0"/>
+          <portSpacing port="sink_output 2" spacing="0"/>
+        </process>
+      </operator>
+      <connect from_op="Get Page" from_port="output" to_port="result 1"/>
+      <connect from_op="Read CSV" from_port="output" to_op="Get Pages" to_port="Example Set"/>
+      <connect from_op="Loop" from_port="output 1" to_port="result 2"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="279" resized="false" width="762" x="14" y="496">Demo 8 - Web Mining Load Data&lt;br&gt;&lt;br&gt;1. Use the &amp;quot;Get Page&amp;quot; operator to load data from the following URL: http://www.metacritic.com/tv/game-of-thrones/user-reviews&lt;br&gt;-----------&lt;br&gt;2. Read the text file &amp;quot;review links game of thrones.txt&amp;quot; with a &amp;quot;Read CSV&amp;quot; operator.&lt;br&gt;3. Connect that to the &amp;quot;Get Pages&amp;quot; operator and review the output.&lt;br&gt;4. Add the &amp;quot;Crawl Web&amp;quot; operator to the process as well.&lt;br&gt;5. Configure the crawling rule with the following parameters: URL is http://www.metacritic.com/tv/game-of-thrones/user-reviews and rule value is &amp;quot;.+/user-reviews\?page=.+&amp;quot; and rule type is &amp;quot;follow URL with matching link&amp;quot; and check &amp;quot;add content as attribute&amp;quot;.&lt;br&gt;-----------&lt;br&gt;6. Use loop operator with &amp;quot;Get Page&amp;quot; to get pages and use the extention &amp;quot;%{iteration}&amp;quot;&lt;br&gt;7. Compare the output.</description>
+    </process>
+  </operator>
+</process>

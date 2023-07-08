@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="327" resized="false" width="718" x="37" y="135">Demo 9 - Web Mining Process Data&lt;br&gt;&lt;br&gt;1. Insert the Process Documents from Web operator. / or Get Page!&lt;br&gt;2. Configure the get page with the following parameters: URL is&lt;br&gt;https://www.metacritic.com/tv/game-of-thrones/season-8/user-reviews?sort-by=date&amp;amp;num_items=100&amp;amp;page=0.&lt;br&gt;3. add the Cut Document operator.&lt;br&gt;4. Inside the Cut Document inner operator, add the Extract Information operator.&lt;br&gt;5. Add the Extract Content operator as well.&lt;br&gt;6. In the main process, add the Documents to Data operator.&lt;br&gt;7. Add a Generate ID operator.&lt;br&gt;8. Add the Replace operator and strip out all extraneous values from the &amp;quot;rating&amp;quot; attribute (hint: try [^0-9] in the regex).&lt;br&gt;9. If needed, use the Split operator to split the numerator of the &amp;quot;rating&amp;quot; attribute by splitting at the / character.&lt;br&gt;10. Use Select attributes to retain only URL, review, and rating.&lt;br&gt;11. Use Parse Numbers to turn &amp;quot;rating&amp;quot; into a numeric field.&lt;br&gt;12. Store the resulting dataset in the repository.&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

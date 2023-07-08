@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.4.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="248" resized="true" width="658" x="31" y="290">Lab 4 - imdb sentences clustering&lt;br&gt;&lt;br&gt;1. Include the process from the second lab and execute it.&lt;br&gt;2. Take the resulting word vector and connect it to the k-Means Clustering operator and set k=2 and distance measure to Numerical/Cosine Similarity.&lt;br&gt;3. Review the resulting clusters in the Results view.&lt;br&gt;4. Add the &amp;quot;Extract Cluster Prototypes&amp;quot; operator. This will provide the cluster centroid table as a dataset.&lt;br&gt;5. Add the &amp;quot;Transpose&amp;quot; operator to its output.&lt;br&gt;6. Add a &amp;quot;Parse Numbers&amp;quot; to convert the resulting data into numbers.&lt;br&gt;7. Generate a new attribute which calculates the difference of the centroids.&lt;br&gt;8. Review the resulting table to understand the terms that most differentiate the clusters.&lt;br&gt;9. Use &amp;quot;Map Clustering on Labels&amp;quot; to see whether the clusters correspond with the labels.&lt;br&gt;10. Review the results.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

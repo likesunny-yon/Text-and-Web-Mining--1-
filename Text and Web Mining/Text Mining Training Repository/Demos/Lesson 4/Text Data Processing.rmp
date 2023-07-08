@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="42"/>
+      <description align="left" color="yellow" colored="false" height="242" resized="true" width="672" x="17" y="243">Demo 4 - Text Data Processing&lt;br&gt;&lt;br&gt;1. Copy the operators from the solution to lesson 3.&lt;br&gt;2. In the Process Documents operator cheeck the &amp;quot;create word vector&amp;quot; parameter and set it to TF-IDF.&lt;br&gt;3. Insert the Generate n-Grams (terms) operator and set n to 2 inside the Process Documents and rerun.&lt;br&gt;4. Add the prune method option to Process Documents and use &amp;quot;absolute&amp;quot; as the method with parameters min=2 and max=500 and rerun.&lt;br&gt;5. In the outer process, add the &amp;quot;set role&amp;quot; operator and reset the id and label variables and other metadata.&lt;br&gt;6. Filter out examples with missing token_length.&lt;br&gt;7. Store the resulting word vector in the repository and review it.&lt;br&gt;8. Add the WordList to Data operator to the outer process and review the resulting dataset.&lt;br&gt;9. Store the word list in the repository.&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

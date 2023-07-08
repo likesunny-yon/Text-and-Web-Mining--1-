@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.4.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="42"/>
+      <description align="left" color="yellow" colored="false" height="212" resized="true" width="696" x="17" y="276">Demo 7 - Text Clustering Using X-Means&lt;br&gt;&lt;br&gt;1. Load the Hotel Review Word Vector from Lesson 4.&lt;br&gt;Use Select Attributes to remove the metadata attributes (token_length, document_length, token_number).&lt;br&gt;3. Add the X-Means Clustering operator.&lt;br&gt;4. Review the special cluster results.&lt;br&gt;5. Generate a copy of the Rating attribute and convert it to polynominal data type.&lt;br&gt;6. Use Map Clustering on Label operator.&lt;br&gt;7. Add a Performance (Classification) operator and review the performance results.&lt;br&gt;8. Add an Aggregate operator to review some key statistics of each cluster (average rating, mode of predicted vs actual rating, etc.).&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

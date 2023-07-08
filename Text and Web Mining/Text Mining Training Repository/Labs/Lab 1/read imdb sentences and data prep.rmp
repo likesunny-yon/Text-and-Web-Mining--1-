@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="212" resized="true" width="679" x="43" y="324">Lab 1 - Read imdb text data and data prep&lt;br&gt;&lt;br&gt;1. Load the imdb data from the file &amp;quot;imdb_labelled.txt&amp;quot; in the Data subdirectory (original Opinosis dataset from http://archive.ics.uci.edu/ml/datasets.html).&lt;br&gt;2. Generate an ID.&lt;br&gt;3. Rename the imdb text attribute to &amp;quot;text&amp;quot;.&lt;br&gt;4. Create the attribute &amp;quot;rating&amp;quot; from the final character of text from each example, where 1=positive and 0=negative (hint, use the suffix function).&lt;br&gt;5. Set the role of &amp;quot;rating&amp;quot; to label.&lt;br&gt;6. Use &amp;quot;Nominal to Text&amp;quot; to make &amp;quot;text&amp;quot; into data type of text.&lt;br&gt;7. Store the results in the &amp;quot;Results&amp;quot; folder in the repository and review the results.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

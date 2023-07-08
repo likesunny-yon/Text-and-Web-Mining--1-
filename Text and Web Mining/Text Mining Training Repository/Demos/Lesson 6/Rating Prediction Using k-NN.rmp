@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.7.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="21"/>
+      <description align="left" color="yellow" colored="false" height="214" resized="true" width="705" x="10" y="214">Demo 6 - Rating Prediction Using k-NN&lt;br&gt;&lt;br&gt;1. Load the Hotel Review Word Vector from Lesson 4.&lt;br&gt;2. Add the Normalize operator. Select document length, token length, and token number and use range transformation {0,1}.&lt;br&gt;3. Add the Optimize Parameter (Grid) operator.&lt;br&gt;4. Add the Cross-Validation Operator as a sub-process, and configure it as usual with the k-NN learner.&lt;br&gt;5. In the Optimize sub-process also add the Log operator.&lt;br&gt;6. Configure the Log to record the k parameter and the performance value.&lt;br&gt;7. Back in the Optimize Parameters, choose k-NN-&amp;gt;K and set the Grid range from 1&amp;#8211;20 and the # of Steps to 20.&lt;br&gt;8. Review the results.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

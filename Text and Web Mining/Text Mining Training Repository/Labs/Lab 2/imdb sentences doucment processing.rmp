@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="212" resized="true" width="705" x="31" y="249">Lab 2 - imdb sentences document processing&lt;br&gt;&lt;br&gt;1. Load the imdb data stored from the first lab.&lt;br&gt;2. Add the &amp;quot;Process Documents from Data&amp;quot; operator and select &amp;quot;add metadata&amp;quot; and &amp;quot;keep text&amp;quot; options.&lt;br&gt;3. Within that subprocess, including the following standard text preprocessing: case transformation, tokenizing, filtering tokens of min length 3, filtering English stopwords.&lt;br&gt;4. Also add inside a &amp;quot;Replace Token&amp;quot; operator and substitute &amp;quot;film&amp;quot; for &amp;quot;movie&amp;quot;.&lt;br&gt;5. Set the word vector creation parameter to TF-IDF and absolute pruning with min/max thresholds of 2/500.&lt;br&gt;6. Add the &amp;quot;Wordlist to Data&amp;quot; operator and review the results.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

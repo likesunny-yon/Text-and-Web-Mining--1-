@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.4.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="7.4.000" expanded="true" height="68" name="Retrieve Hotel Review Data" width="90" x="45" y="34">
+        <parameter key="repository_entry" value="../../Data/Hotel Review Data"/>
+      </operator>
+      <operator activated="true" class="nominal_to_text" compatibility="7.4.000" expanded="true" height="82" name="Nominal to Text" width="90" x="179" y="34">
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="text:process_document_from_data" compatibility="7.4.001" expanded="true" height="82" name="Process Documents from Data" width="90" x="313" y="34">
+        <parameter key="create_word_vector" value="false"/>
+        <parameter key="vector_creation" value="TF-IDF"/>
+        <parameter key="add_meta_information" value="true"/>
+        <parameter key="keep_text" value="true"/>
+        <parameter key="prune_method" value="none"/>
+        <parameter key="prune_below_percent" value="3.0"/>
+        <parameter key="prune_above_percent" value="30.0"/>
+        <parameter key="prune_below_rank" value="0.05"/>
+        <parameter key="prune_above_rank" value="0.95"/>
+        <parameter key="datamanagement" value="double_sparse_array"/>
+        <parameter key="select_attributes_and_weights" value="false"/>
+        <list key="specify_weights"/>
+        <process expanded="true">
+          <operator activated="true" class="text:tokenize" compatibility="7.4.001" expanded="true" height="68" name="Tokenize" width="90" x="246" y="85">
+            <parameter key="mode" value="non letters"/>
+            <parameter key="characters" value=".:"/>
+            <parameter key="language" value="English"/>
+            <parameter key="max_token_length" value="3"/>
+          </operator>
+          <operator activated="true" class="text:transform_cases" compatibility="7.4.001" expanded="true" height="68" name="Transform Cases" width="90" x="380" y="85">
+            <parameter key="transform_to" value="lower case"/>
+          </operator>
+          <operator activated="true" class="text:filter_by_length" compatibility="7.4.001" expanded="true" height="68" name="Filter Tokens (by Length)" width="90" x="514" y="85">
+            <parameter key="min_chars" value="3"/>
+            <parameter key="max_chars" value="40"/>
+          </operator>
+          <operator activated="true" class="text:filter_stopwords_english" compatibility="7.4.001" expanded="true" height="68" name="Filter Stopwords (English)" width="90" x="648" y="85"/>
+          <operator activated="true" class="text:stem_porter" compatibility="7.4.001" expanded="true" height="68" name="Stem (Porter)" width="90" x="447" y="187"/>
+          <operator activated="true" class="text:replace_tokens" compatibility="7.4.001" expanded="true" height="68" name="Replace Tokens" width="90" x="447" y="289">
+            <list key="replace_dictionary">
+              <parameter key="noisi" value="nois"/>
+            </list>
+          </operator>
+          <operator activated="true" class="text:extract_length" compatibility="7.4.001" expanded="true" height="68" name="Extract Length" width="90" x="514" y="391">
+            <parameter key="metadata_key" value="document_length"/>
+          </operator>
+          <operator activated="true" class="text:extract_token_number" compatibility="7.4.001" expanded="true" height="68" name="Extract Token Number" width="90" x="648" y="391">
+            <parameter key="metadata_key" value="token_number"/>
+            <parameter key="condition" value="all"/>
+            <parameter key="case_sensitive" value="false"/>
+            <parameter key="invert_condition" value="false"/>
+          </operator>
+          <operator activated="true" class="text:aggregate_token_length" compatibility="7.4.001" expanded="true" height="68" name="Aggregate Token Length" width="90" x="782" y="391">
+            <parameter key="metadata_key" value="token_length"/>
+            <parameter key="aggregation" value="average"/>
+          </operator>
+          <connect from_port="document" to_op="Tokenize" to_port="document"/>
+          <connect from_op="Tokenize" from_port="document" to_op="Transform Cases" to_port="document"/>
+          <connect from_op="Transform Cases" from_port="document" to_op="Filter Tokens (by Length)" to_port="document"/>
+          <connect from_op="Filter Tokens (by Length)" from_port="document" to_op="Filter Stopwords (English)" to_port="document"/>
+          <connect from_op="Filter Stopwords (English)" from_port="document" to_op="Stem (Porter)" to_port="document"/>
+          <connect from_op="Stem (Porter)" from_port="document" to_op="Replace Tokens" to_port="document"/>
+          <connect from_op="Replace Tokens" from_port="document" to_op="Extract Length" to_port="document"/>
+          <connect from_op="Extract Length" from_port="document" to_op="Extract Token Number" to_port="document"/>
+          <connect from_op="Extract Token Number" from_port="document" to_op="Aggregate Token Length" to_port="document"/>
+          <connect from_op="Aggregate Token Length" from_port="document" to_port="document 1"/>
+          <portSpacing port="source_document" spacing="0"/>
+          <portSpacing port="sink_document 1" spacing="0"/>
+          <portSpacing port="sink_document 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="text:wordlist_to_data" compatibility="7.4.001" expanded="true" height="82" name="WordList to Data" width="90" x="514" y="136"/>
+      <connect from_op="Retrieve Hotel Review Data" from_port="output" to_op="Nominal to Text" to_port="example set input"/>
+      <connect from_op="Nominal to Text" from_port="example set output" to_op="Process Documents from Data" to_port="example set"/>
+      <connect from_op="Process Documents from Data" from_port="example set" to_port="result 1"/>
+      <connect from_op="Process Documents from Data" from_port="word list" to_op="WordList to Data" to_port="word list"/>
+      <connect from_op="WordList to Data" from_port="word list" to_port="result 3"/>
+      <connect from_op="WordList to Data" from_port="example set" to_port="result 2"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="105"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="318" resized="false" width="688" x="26" y="256">Demo 3 - Text Data Preprocessing&lt;br&gt;&lt;br&gt;1. Load the Hotel Review Data and prepare it using Nominal to Text operator.&lt;br&gt;2. Create a Process Documents from Data operator and leave the &amp;quot;create word vector&amp;quot; unchecked, then open the subprocess.&lt;br&gt;3. Insert the Tokenize operator and set to non-letter characters.&lt;br&gt;4. Insert the Transform Cases operator.&lt;br&gt;5. Insert the Filter Tokens by Length operator and set to 3/40 min/max.&lt;br&gt;6. Insert the Filter Stopwords (English) operator.&lt;br&gt;7. Insert the Stem (Porter) operator.&lt;br&gt;8. Insert the Replace Tokens and set &amp;quot;noisi&amp;quot; to be replaced by &amp;quot;nois&amp;quot;.&lt;br&gt;9. Insert the Extract Length operator.&lt;br&gt;10. Insert the Extract Token Number operator.&lt;br&gt;11. Insert the Aggregate Token Length operator.&lt;br&gt;12. Add the Wordlist to Data operator to the output.&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

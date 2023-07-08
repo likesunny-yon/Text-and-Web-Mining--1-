@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <description align="left" color="yellow" colored="false" height="318" resized="false" width="688" x="38" y="195">Demo 3 - Text Data Preprocessing&lt;br&gt;&lt;br&gt;1. Load the Hotel Review Data and prepare it using Nominal to Text operator.&lt;br&gt;2. Create a Process Documents from Data operator and leave the &amp;quot;create word vector&amp;quot; unchecked, then open the subprocess.&lt;br&gt;3. Insert the Tokenize operator and set to non-letter characters.&lt;br&gt;4. Insert the Transform Cases operator.&lt;br&gt;5. Insert the Filter Tokens by Length operator and set to 3/40 min/max.&lt;br&gt;6. Insert the Filter Stopwords (English) operator.&lt;br&gt;7. Insert the Stem (Porter) operator.&lt;br&gt;8. Insert the Replace Tokens and set &amp;quot;noisi&amp;quot; to be replaced by &amp;quot;nois&amp;quot;.&lt;br&gt;9. Insert the Extract Length operator.&lt;br&gt;10. Insert the Extract Token Number operator.&lt;br&gt;11. Insert the Aggregate Token Length operator.&lt;br&gt;12. Add the Wordlist to Data operator to the output.&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>
